@@ -25,10 +25,6 @@ public class Order {
      */
     private String userId;
     /**
-     * 商铺Id
-     */
-    private String shopId;
-    /**
      * 商品Id
      */
     private String goodsId;

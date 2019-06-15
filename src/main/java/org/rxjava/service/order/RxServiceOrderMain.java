@@ -34,6 +34,6 @@ public class RxServiceOrderMain {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        RxOrderApplication.main(args);
+        RxServiceOrderApplication.main(args);
     }
 }

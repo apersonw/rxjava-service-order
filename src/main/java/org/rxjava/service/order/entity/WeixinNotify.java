@@ -21,7 +21,6 @@ public class WeixinNotify {
      * 返回状态码
      */
     private String return_code;
-
     /**
      * 返回信息
      */
