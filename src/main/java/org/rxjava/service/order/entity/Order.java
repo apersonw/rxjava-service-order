@@ -1,6 +1,7 @@
 package org.rxjava.service.order.entity;
 
 import lombok.Data;
+import org.rxjava.service.order.status.OrderStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -25,9 +26,13 @@ public class Order {
      */
     private String userId;
     /**
-     * 商品Id
+     * 应用Id
      */
-    private String goodsId;
+    private String appId;
+    /**
+     * 订单状态
+     */
+    private OrderStatus status = OrderStatus.INIT;
     /**
      * 创建日期
      */

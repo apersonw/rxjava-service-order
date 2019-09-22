@@ -3,21 +3,15 @@ package org.rxjava.service.order.person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.rxjava.common.core.annotation.Login;
-import org.rxjava.common.core.entity.LoginInfo;
-import org.rxjava.service.order.entity.Order;
 import org.rxjava.service.order.form.AlipayNotifyForm;
-import org.rxjava.service.order.form.CreateOrderForm;
-import org.rxjava.service.order.model.OrderModel;
-import org.rxjava.service.order.repository.OrderRepository;
-import org.springframework.beans.BeanUtils;
+import org.rxjava.service.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-import javax.validation.Valid;
 
 /**
  * @author happy 2019-04-15 23:13
@@ -26,22 +20,16 @@ import javax.validation.Valid;
 public class OrderController {
     private static final Logger log = LogManager.getLogger();
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     /**
-     * 创建订单
+     * 发起支付宝支付
      */
-    @PostMapping("order")
-    public Mono<OrderModel> createOrder(
-            @Valid CreateOrderForm form,
-            LoginInfo loginInfo
-    ) {
-        Order order = new Order();
-        BeanUtils.copyProperties(form, order);
-        order.setUserId(loginInfo.getUserId());
-        return orderRepository
-                .save(order)
-                .map(this::transform);
+    @PostMapping("aliPay/{orderId}")
+    public Mono<String> startAliPay(
+            @PathVariable String orderId
+    ){
+        return orderService.startAliPay(orderId);
     }
 
     /**
@@ -57,12 +45,6 @@ public class OrderController {
         //fixme:待写收到通知后的处理
         return Mono.just(form)
                 .then(exchange.getResponse().writeAndFlushWith(r -> Mono.just("success")));
-    }
-
-    private OrderModel transform(Order order) {
-        OrderModel orderModel = new OrderModel();
-        BeanUtils.copyProperties(order, orderModel);
-        return orderModel;
     }
 
     /**

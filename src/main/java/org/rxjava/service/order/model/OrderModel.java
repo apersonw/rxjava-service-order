@@ -15,10 +15,6 @@ public class OrderModel {
      */
     private String userId;
     /**
-     * 商品Id
-     */
-    private String goodsId;
-    /**
      * 创建日期
      */
     private LocalDateTime createDate;
