@@ -1,9 +1,9 @@
 package org.rxjava.service.order.entity;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
+import org.rxjava.common.core.entity.BaseEntity;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
@@ -11,14 +11,9 @@ import java.time.LocalDateTime;
  * @author happy 2019-05-19 22:12
  * 微信订单
  */
-@Data
-@Document
-public class WeixinOrder {
-    /**
-     * ID
-     */
-    @Id
-    private String id;
+@Getter
+@Setter
+public class WeixinOrder extends BaseEntity {
     /**
      * 商户订单号,	商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号
      */

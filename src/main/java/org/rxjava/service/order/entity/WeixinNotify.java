@@ -1,22 +1,16 @@
 package org.rxjava.service.order.entity;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Getter;
+import lombok.Setter;
+import org.rxjava.common.core.entity.BaseEntity;
 
 /**
  * @author happy 2019-05-19 22:18
  * 微信通知
  */
-@Data
-@Document
-public class WeixinNotify {
-    /**
-     * id
-     */
-    @Id
-    private String id;
-
+@Getter
+@Setter
+public class WeixinNotify extends BaseEntity {
     /**
      * 返回状态码
      */

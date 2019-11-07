@@ -1,9 +1,9 @@
 package org.rxjava.service.order.entity;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
+import org.rxjava.common.core.entity.BaseEntity;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
@@ -11,21 +11,16 @@ import java.time.LocalDateTime;
  * @author happy 2019-05-19 22:13
  * 支付宝订单
  */
-@Data
-@Document
-public class AlipayOrder {
-    /**
-     * ID
-     */
-    @Id
-    private String id;
+@Getter
+@Setter
+public class AlipayOrder extends BaseEntity {
     /**
      * 商户订单号,	商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号
      */
     @Indexed(unique = true)
     private String outTradeNo;
     /**
-     * 订单order_id
+     * 订单Id
      */
     @Indexed
     private String orderId;

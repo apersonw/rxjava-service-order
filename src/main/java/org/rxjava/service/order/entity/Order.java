@@ -1,47 +1,49 @@
 package org.rxjava.service.order.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.rxjava.common.core.entity.BaseEntity;
+import org.rxjava.common.core.entity.Image;
 import org.rxjava.service.order.status.OrderStatus;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-
-import static org.springframework.data.mongodb.core.index.IndexDirection.DESCENDING;
+import java.util.List;
 
 /**
  * @author happy 2019-03-29 13:45
  */
-@Data
-@Document
-public class Order {
-    @Id
-    private String id;
+@Getter
+@Setter
+public class Order extends BaseEntity {
     /**
      * 用户Id
      */
     private String userId;
     /**
-     * 应用Id
+     * 下单服务：如rxjava-service-card
      */
-    private String appId;
+    private String service;
+    /**
+     * 下单服务订单Id
+     */
+    private String serviceOrderId;
+    /**
+     * 购物中心名称：如充值中心，由下单服务传过来
+     */
+    private String mallName;
+    /**
+     * 购物中心LOGO：
+     */
+    private Image mallLogo;
     /**
      * 订单状态
      */
     private OrderStatus status = OrderStatus.INIT;
     /**
-     * 创建日期
+     * 订单商品列表
      */
-    @CreatedDate
-    @Indexed(direction = DESCENDING)
-    private LocalDateTime createDate;
+    private List<OrderGoods> orderGoodsList;
     /**
-     * 更新日期
+     * 删除状态
      */
-    @LastModifiedDate
-    private LocalDateTime updateDate;
+    private boolean delete;
 }

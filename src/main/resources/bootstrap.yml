@@ -1,10 +1,10 @@
 spring:
   application:
-    name: service-order
+    name: rxjava-service-order
   data:
     mongodb:
       uri: mongodb://127.0.0.1:27017
-      database: service-order
+      database: rxjava-service-order
   rabbitmq:
     host: 127.0.0.1
     port: 5672

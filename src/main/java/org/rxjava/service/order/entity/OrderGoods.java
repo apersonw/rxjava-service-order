@@ -1,17 +1,34 @@
 package org.rxjava.service.order.entity;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
+import org.rxjava.common.core.entity.Image;
 
 /**
  * @author happy 2019-04-22 20:22
  * 订单商品
  */
-@Data
+@Getter
+@Setter
 public class OrderGoods {
-    @Id
-    private String id;
-    private String orderId;
-    private String goodsId;
-    private String userId;
+    /**
+     * 商品图标
+     */
+    private Image icon;
+    /**
+     * 商品名称
+     */
+    private String name;
+    /**
+     * 选择的Sku名称
+     */
+    private String skuName;
+    /**
+     * 购买数量
+     */
+    private int buyNum = 1;
+    /**
+     * 实付款价
+     */
+    private int payPrice;
 }
