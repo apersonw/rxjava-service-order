@@ -3,6 +3,14 @@ package org.rxjava.service.order.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.rxjava.common.core.entity.BaseEntity;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
 
 /**
  * @author happy 2019-05-19 22:17
@@ -10,7 +18,14 @@ import org.rxjava.common.core.entity.BaseEntity;
  */
 @Getter
 @Setter
-public class AlipayNotify extends BaseEntity {
+@Document
+public class AlipayNotify {
+    private String id;
+    @CreatedDate
+    @Indexed(direction = IndexDirection.DESCENDING)
+    private LocalDateTime createDate;
+    @LastModifiedDate
+    private LocalDateTime updateDate;
     /**
      * 通知时间	Date	是	通知的发送时间。格式为yyyy-MM-dd HH:mm:ss	2015-14-27 15:45:58
      */

@@ -31,6 +31,7 @@ public class AliPayService {
     private static final Logger log = LogManager.getLogger();
     @Autowired
     private OrderProperties orderProperties;
+
     private static final String ALIPAY_GATEWAY_URL = "https://openapi.alipay.com/gateway.do";
 
     /**
