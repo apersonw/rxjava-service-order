@@ -5,14 +5,24 @@ import lombok.Setter;
 import org.rxjava.common.core.entity.BaseEntity;
 import org.rxjava.common.core.entity.Image;
 import org.rxjava.service.order.status.OrderStatus;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 
 import java.util.List;
 
 /**
  * @author happy 2019-03-29 13:45
+ * 订单
  */
 @Getter
 @Setter
+@CompoundIndexes(
+        @CompoundIndex(
+                name = "service_serviceOrderId",
+                def = "{'service':1,'serviceOrderId':1}",
+                unique = true
+        )
+)
 public class Order extends BaseEntity {
     /**
      * 用户Id
