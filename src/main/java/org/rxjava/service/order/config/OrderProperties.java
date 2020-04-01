@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "order")
 public class OrderProperties {
     private AliPay aliPay;
+
     @Data
     public static class AliPay {
         private String appId;
